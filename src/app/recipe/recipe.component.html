@@ -1,0 +1,26 @@
+<!-- Nav pills -->
+<div class="container tab-pane "><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-5">
+            <button type="button" routerLink="/add" class="btn btn-success">Create</button>
+            <a *ngFor="let recipe of recipes" class="list-group-item clearfix active" style="cursor: pointer;" routerLink="/recipe/{{recipe.id}}">
+              <div class="pull-left"  >
+                <h4 class="list-group-item-heading">
+                  {{ recipe.name}}
+                </h4>
+                <p class="list-group-item-text"> {{ recipe.description}}</p>
+              </div>
+              <span class="pull-right">
+                <img src="{{ recipe.image_url }}" style="max-height: 50px;">
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

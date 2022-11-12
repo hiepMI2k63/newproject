@@ -1,0 +1,28 @@
+<app-recipe></app-recipe>
+
+<div  *ngIf="recipe" class="row">
+    <div class="col-xs-12">
+        <img src="{{recipe.image_url}}" alt="" style="max-height: 400px; max-width: 400px; user-select: auto;">
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>{{ recipe.name}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <p>{{ recipe.description}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Manage Recipe</button>
+                <ul class="dropdown-menu">
+                  <li><a  class="dropdown-item" routerLink="/edit/{{recipe.id}}">Edit</a></li>
+                  <li><a class="dropdown-item" (click)="deleteRecipe()">Delete</a></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>

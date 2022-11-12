@@ -1,0 +1,45 @@
+<app-recipe></app-recipe>
+<div >
+
+    <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+            <button (click)="getCreateRecipe()" class="btn btn-success" >Save</button>
+            <button (click)="getCreateRecipe()" type="button" class="btn btn-danger">Cancel</button>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input  type="text"  [(ngModel)] ="name"
+                        class="form-control ng-untouched ng-pristine ng-valid"  >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="name">Image URL</label>
+                    <input type="text" [(ngModel)] ="image_url"
+                    class="form-control ng-untouched ng-pristine ng-valid" >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <img src="{{image_url}}" height="150px" width="150px" class="img-responsive"  >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <textarea [(ngModel)] ="description" type="text" placeholder ="recipe.description" rows="6" class="form-control ng-pristine ng-valid ng-touched" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
