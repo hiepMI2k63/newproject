@@ -1,45 +1,105 @@
 <app-recipe></app-recipe>
-<div >
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <form novalidate
+          #recipeEditForm="ngForm"
+          (ngSubmit)="saveRecipe()">
+      <fieldset *ngIf="recipe">
+        <div class="row mb-3">
+          <label class="col-md-2 form-label"
+                 for="recipeNameId"
+                 [ngClass]="{'text-danger': (recipeNameVar.touched ||
+                              recipeNameVar.dirty || recipe.id !== 0) && !recipeNameVar.valid }">
+            Product Name
+          </label>
 
-    <div class="row">
-        <div class="col-xs-12 btn-toolbar">
-            <button (click)="getCreateRecipe()" class="btn btn-success" >Save</button>
-            <button (click)="getCreateRecipe()" type="button" class="btn btn-danger">Cancel</button>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="recipeNameId"
+                   type="text"
+                   placeholder="Name (required)"
+                   required
+                   minlength="3"
+                   [(ngModel)]=recipe.name
+                   name="recipeName"
+                   #recipeNameVar="ngModel"
+                   [ngClass]="{'is-invalid': (recipeNameVar.touched ||
+                              recipeNameVar.dirty || recipe.id !== 0) &&
+                              !recipeNameVar.valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="recipeNameVar.errors?.['required']">
+                recipe name is required.
+              </span>
+              <span *ngIf="recipeNameVar.errors?.['minlength']">
+                recipe name must be at least three characters.
+              </span>
+            </span>
+          </div>
+        </div>
 
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input  type="text"  [(ngModel)] ="name"
-                        class="form-control ng-untouched ng-pristine ng-valid"  >
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-group">
-                    <label for="name">Image URL</label>
-                    <input type="text" [(ngModel)] ="image_url"
-                    class="form-control ng-untouched ng-pristine ng-valid" >
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-group">
-                    <img src="{{image_url}}" height="150px" width="150px" class="img-responsive"  >
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form-group">
-                    <textarea [(ngModel)] ="description" type="text" placeholder ="recipe.description" rows="6" class="form-control ng-pristine ng-valid ng-touched" ></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="row mb-3">
+          <!-- for="recipeCodeId" -->
+          <label class="col-md-2 form-label"
 
+                 [ngClass]="{'text-danger': (recipeCodeVar.touched ||
+                                             recipeCodeVar.dirty || recipe.id !== 0) &&
+                                             !recipeCodeVar.valid }">
+            recipe Code
+          </label>
 
+          <div class="col-md-8">
+            <!-- id="recipeCodeId" -->
+            <input class="form-control"
+
+                   type="text"
+                   required
+                   [(ngModel)]=recipe.description
+                   name="recipeCode"
+                   #recipeCodeVar="ngModel"
+                   [ngClass]="{'is-invalid': (recipeCodeVar.touched ||
+                                              recipeCodeVar.dirty || recipe.id !== 0) &&
+                                              !recipeCodeVar.valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="recipeCodeVar.errors?.['required']">
+                recipe code is required.
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-md-2 form-label"
+                 for="descriptionId">Description</label>
+
+          <div class="col-md-8">
+            <textarea class="form-control"
+                      id="descriptionId"
+                      placeholder="Description"
+                      rows="3"
+                      [(ngModel)]="recipe.description"
+                      name="description">
+            </textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset-md-2 col-md-8 ">
+            <button class="btn btn-primary me-1"
+                    type="submit"
+                    style="width:80px"
+                    [disabled]="!recipeEditForm.valid"
+                    (click)="saveRecipe()">
+              Save
+            </button>
+
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </div>
+
+

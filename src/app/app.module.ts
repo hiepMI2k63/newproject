@@ -17,7 +17,8 @@ import { RecipeComponent } from './recipe/recipe.component';
     RecipeEditComponent,
     AboutComponent,
     RecipeDetailComponent,
-    RecipeComponent
+    RecipeComponent,
+
   ],
   imports: [
     BrowserModule,
