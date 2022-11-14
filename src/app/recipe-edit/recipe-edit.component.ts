@@ -33,12 +33,12 @@ export class RecipeEditComponent implements OnInit {
     console.log(tempt);
     this.recipes[index] = tempt;
     console.log(this.recipes);
-    
-    
+
+
     this.router.navigate(['/recipe/',parseInt(this.route.snapshot.paramMap.get('id')!, 10)]);
     }
 
-  back() {    this.router.navigate(['/message']);}
+  back() {    this.router.navigate(['/recipe']);}
 
   constructor( private route: ActivatedRoute,  private router: Router, private _location: Location, @Inject(DOCUMENT) private document: Document ) {};
 
@@ -50,7 +50,7 @@ export class RecipeEditComponent implements OnInit {
         this.recipe  =  this.recipes.find(p => p.id ==id);
       }
     );
-    
+
     this.recipeForm =  new FormGroup({
       recipeName: new FormControl(this.recipe?.name, [Validators.required]),
       recipeImage_url: new FormControl(this.recipe?.image_url,[Validators.required]),

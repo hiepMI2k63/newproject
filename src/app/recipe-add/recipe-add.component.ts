@@ -30,14 +30,16 @@ export class RecipeAddComponent implements OnInit{
 
      }
      this.recipes.push(this.recipe);
-     this.router.navigate(['/message']);
-     
+     this.router.navigate(['/recipe']);
+
     }
 
     backselect()
-    { 
-      this.router.navigate(['/message']);
-     
+    {
+      console.log(1);
+
+      this.router.navigate(['/recipe']);
+
     }
 
 }

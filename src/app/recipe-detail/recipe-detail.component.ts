@@ -19,12 +19,12 @@ export class RecipeDetailComponent implements OnInit {
         router.events.pipe(
           filter((e: Event): e is RouterEvent => e instanceof RouterEvent)
       ).subscribe((e: RouterEvent) => {
-        
+
         const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
         this.recipe = this.recipes.find(p => p.id ==id);
-        
+
       });
-      
+
   };
 
   ngOnInit(): void {}
@@ -34,7 +34,7 @@ export class RecipeDetailComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     let index = this.recipes.findIndex(p => p.id ==id);
     this.recipes.splice(index, 1);
-    this._location.back();
+    this.router.navigate(['/recipe']);
   }
 
 }

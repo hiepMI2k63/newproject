@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl ,FormGroup, Validators } from '@angular/forms';
-import { Recipe } from './recipe/models/recipe';
+import { Recipe, RECIPES } from './recipe/models/recipe';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +10,19 @@ import { Recipe } from './recipe/models/recipe';
 export class AppComponent implements OnInit{
 
   recipes: Recipe[] = [];
-  
+
   ngOnInit(): void {
-    
+
+    this.recipes = RECIPES;
+
   }
+
   constructor( )
-  {   
- 
+  {
+
 
    }
-  
+
   title = 'newproject';
   // name = new FormControl('');
 
@@ -47,7 +50,7 @@ export class AppComponent implements OnInit{
 //     address: {
 //       street: '123 Drew Street'
 //     }
-     
+
 //   });
 // }
   // updateName()
@@ -57,6 +60,6 @@ export class AppComponent implements OnInit{
   onSubmit()
   {
     console.log("say hi");
-    
+
   }
 }

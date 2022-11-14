@@ -1,4 +1,4 @@
-<app-recipe></app-recipe>
+
 <div class="card">
   <div class="card-header">
 
@@ -9,7 +9,7 @@
           (ngSubmit)="saveRecipe()"
 
           >
-          <!--  -->
+
       <fieldset >
         <div class="row mb-3">
           <label class="col-md-2 form-label"
@@ -44,7 +44,7 @@
         </div>
 
         <div class="row mb-3">
-          <!-- for="recipeImageUrlId" -->
+
           <label class="col-md-2 form-label"
 
                  [ngClass]="{'text-danger': (recipeImageUrlVar.touched ||
@@ -54,7 +54,7 @@
           </label>
 
           <div class="col-md-8">
-            <!-- id="recipeImageUrlId" -->
+
             <input class="form-control"
 
                    type="text"
@@ -101,13 +101,13 @@
             </button>
           </div>
         </div>
-        
+
       </fieldset>
     </form>
     <div class="row">
       <div class="offset-md-2 col-md-8 ">
         <button class="btn btn-danger me-1"
-        
+
         style="width:80px"
         (click)="backselect()"> Cancel</button>
       </div>

@@ -9,7 +9,6 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { AboutComponent } from './about/about.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeComponent } from './recipe/recipe.component';
-import { MessageComponent } from './message/message.component';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -19,7 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     RecipeDetailComponent,
     RecipeComponent,
-    MessageComponent,
+
 
   ],
   imports: [
@@ -27,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
 
   ],
   providers: [],
