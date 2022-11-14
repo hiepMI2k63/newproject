@@ -6,7 +6,9 @@
         <div class="row">
           <div class="col-md-5">
             <button type="button" routerLink="/add" class="btn btn-success">Create</button>
-            <a *ngFor="let recipe of recipes" class="list-group-item clearfix active" style="cursor: pointer;" routerLink="/recipe/{{recipe.id}}">
+            <a *ngFor="let recipe of recipes" 
+            class="list-group-item clearfix active" style="cursor: pointer;"
+             routerLink="/recipe/{{recipe.id}}">
               <div class="pull-left"  >
                 <h4 class="list-group-item-heading">
                   {{ recipe.name}}

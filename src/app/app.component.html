@@ -6,3 +6,40 @@
 
 </router-outlet>
 <!-- <app-template-driven-form></app-template-driven-form> -->
+<!-- <label > name: </label>
+<input type="text" [formControl]="name" id="name">
+<p> {{ name.value }}</p>
+<button type="button" (click)="updateName()">Update Name</button> -->
+
+
+<!-- <form [formGroup]="profileForm"
+       (ngSubmit)="onSubmit()">
+  <label for="first-name"> Fisrt Name: </label>
+  <input required type="text" id="first-name" formControlName="fisrtName">
+  <label for="last-name"> Last Name </label>
+  <input required type="text" id="last-name" formControlName="lastName">
+  <button type="submit" 
+    [disabled]="!profileForm.valid"> Sumit </button>
+</form> -->
+///////////////////
+<!-- <form [formGroup]="profileFormv1" 
+      (ngSubmit)="onSubmit()">
+
+  <label for="first-name"> Fisrt Name: </label>
+  <input  type="text" id="first-name" formControlName="firstName">
+  <label for="last-name"> Last Name </label>
+  <input  type="text" id="last-name" formControlName="lastName">
+  <div formGroupName="address">
+    <h2> Address </h2>
+    <label for="street"> Street: </label>
+    <input type="text"  id="street" formControlName="street">
+    <label for="city"> City: </label>
+    <input type="text" id="city" formControlName="city">
+    <label for="state"> State: </label>
+    <input type="text" id="state" formControlName="state">
+    <label for="zip"> Zip: </label>
+    <input  type="text" id="zip" formControlName="zip">
+  </div>
+  <button type="button" 
+  [disabled]="!profileFormv1.valid"> Submit</button>
+</form> -->

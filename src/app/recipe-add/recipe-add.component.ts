@@ -16,23 +16,28 @@ export class RecipeAddComponent implements OnInit{
   recipe?:Recipe;
   flagSave =  true;
 
+    constructor( private route: ActivatedRoute,  private router: Router, private _location: Location)    {    }
 
-      constructor( private route: ActivatedRoute,  private router: Router, private _location: Location)
-      {    }
     ngOnInit(): void {    }
+
     saveRecipe(){
 
-      //
-      //this.recipe?.id = 1; error
       this.recipe = {
-       id:1, name: this.name,
-      image_url:'https://www.portugalist.com/wp-content/uploads/prego.jpg',
-      description: this.description,
+       id: this.recipes.length + 1,
+       name: this.name,
+       image_url:'https://www.portugalist.com/wp-content/uploads/prego.jpg',
+       description: this.description,
 
      }
      this.recipes.push(this.recipe);
-     console.log(this.recipes);
+     this.router.navigate(['/message']);
+     
+    }
 
+    backselect()
+    { 
+      this.router.navigate(['/message']);
+     
     }
 
 }

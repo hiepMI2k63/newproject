@@ -6,29 +6,95 @@
   <div class="card-body">
     <form novalidate
           #recipeEditForm="ngForm"
+          [formGroup]="recipeForm"
+          (ngSubmit)="saveRecipe()"
+          >
+      <fieldset *ngIf="recipe">
+       
+        <div class="row mb-3">
+          <label id="recipe-name" class="col-md-2 form-label">
+            Recipe name
+          </label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   type="text"
+                   formControlName="recipeName"
+                   required
+                   id="recipe-name"
+             />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-md-2 form-label">
+            Image Url
+          </label>
+          <div class="col-md-8">
+            <input 
+                  class="form-control"              
+                  type="text"
+                  formControlName="recipeImage_url"
+                  required
+                  />
+          </div>
+        </div>
+
+     
+        <div class="row mb-3">
+          <label class="col-md-2 form-label"
+                 for="descriptionId">Description</label>
+
+          <div class="col-md-8">
+            <textarea class="form-control"
+                      id="descriptionId"
+                      type="text"
+                      formControlName="recipeDescription"
+                      rows="3"                 
+                      >
+            </textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="offset-md-2 col-md-8 ">
+            <button class="btn btn-primary me-1"
+                    type="submit"
+                    style="width:80px"
+                    [disabled]="!recipeEditForm.valid"
+                   >
+                   <!-- (click)="saveRecipe()" -->
+              Save
+            </button>
+            <button class="btn btn-danger me-1"
+            style="width:80px"
+            (click)="back()"> Back</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div> 
+  <!-- <div class="card-body">
+    <form novalidate
+          #recipeEditForm="ngForm"
           (ngSubmit)="saveRecipe()">
       <fieldset *ngIf="recipe">
         <div class="row mb-3">
-          <label class="col-md-2 form-label"
-                 for="recipeNameId"
-                 [ngClass]="{'text-danger': (recipeNameVar.touched ||
-                              recipeNameVar.dirty || recipe.id !== 0) && !recipeNameVar.valid }">
-            Product Name
+          <label class="col-md-2 form-label">
+            Recipe name
           </label>
 
           <div class="col-md-8">
             <input class="form-control"
-                   id="recipeNameId"
                    type="text"
                    placeholder="Name (required)"
                    required
-                   minlength="3"
                    [(ngModel)]=recipe.name
                    name="recipeName"
                    #recipeNameVar="ngModel"
                    [ngClass]="{'is-invalid': (recipeNameVar.touched ||
-                              recipeNameVar.dirty || recipe.id !== 0) &&
-                              !recipeNameVar.valid }" />
+                              recipeNameVar.dirty) &&
+                              !recipeNameVar.valid }" 
+             />
             <span class="invalid-feedback">
               <span *ngIf="recipeNameVar.errors?.['required']">
                 recipe name is required.
@@ -41,35 +107,34 @@
         </div>
 
         <div class="row mb-3">
-          <!-- for="recipeCodeId" -->
-          <label class="col-md-2 form-label"
-
-                 [ngClass]="{'text-danger': (recipeCodeVar.touched ||
-                                             recipeCodeVar.dirty || recipe.id !== 0) &&
-                                             !recipeCodeVar.valid }">
-            recipe Code
+          <label class="col-md-2 form-label">
+            Image Url
           </label>
 
           <div class="col-md-8">
-            <!-- id="recipeCodeId" -->
             <input class="form-control"
-
+                  
                    type="text"
+                   placeholder="ImageUrl (required)"
                    required
-                   [(ngModel)]=recipe.description
-                   name="recipeCode"
-                   #recipeCodeVar="ngModel"
-                   [ngClass]="{'is-invalid': (recipeCodeVar.touched ||
-                                              recipeCodeVar.dirty || recipe.id !== 0) &&
-                                              !recipeCodeVar.valid }" />
+                   name="recipeImageUrl"
+                   [(ngModel)]=recipe.image_url
+                   #recipeImageUrlVar="ngModel"
+                   [ngClass]="{'is-invalid': (recipeImageUrlVar.touched ||
+                              recipeImageUrlVar.dirty ) &&
+                              !recipeImageUrlVar.valid }" />
             <span class="invalid-feedback">
-              <span *ngIf="recipeCodeVar.errors?.['required']">
-                recipe code is required.
+              <span *ngIf="recipeImageUrlVar.errors?.['required']">
+                recipe image url is required.
+              </span>
+              <span *ngIf="recipeImageUrlVar.errors?.['minlength']">
+                recipe image url must be at least three characters.
               </span>
             </span>
           </div>
         </div>
 
+     
         <div class="row mb-3">
           <label class="col-md-2 form-label"
                  for="descriptionId">Description</label>
@@ -77,10 +142,14 @@
           <div class="col-md-8">
             <textarea class="form-control"
                       id="descriptionId"
-                      placeholder="Description"
+                      placeholder="Description ( required)"
+                      required
+                      name="recipeDesciption"
                       rows="3"
                       [(ngModel)]="recipe.description"
-                      name="description">
+                      name="description"
+                      #receipDescription="ngModel"
+                      >
             </textarea>
           </div>
         </div>
@@ -94,12 +163,14 @@
                     (click)="saveRecipe()">
               Save
             </button>
-
+            <button class="btn btn-danger me-1"
+            style="width:80px"
+            (click)="back()"> Back</button>
           </div>
         </div>
       </fieldset>
     </form>
-  </div>
+  </div> -->
 </div>
 
 

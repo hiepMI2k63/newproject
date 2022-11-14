@@ -44,30 +44,30 @@
         </div>
 
         <div class="row mb-3">
-          <!-- for="recipeCodeId" -->
+          <!-- for="recipeImageUrlId" -->
           <label class="col-md-2 form-label"
 
-                 [ngClass]="{'text-danger': (recipeCodeVar.touched ||
-                                             recipeCodeVar.dirty ) &&
-                                             !recipeCodeVar.valid }">
-            recipe Code
+                 [ngClass]="{'text-danger': (recipeImageUrlVar.touched ||
+                                             recipeImageUrlVar.dirty ) &&
+                                             !recipeImageUrlVar.valid }">
+            recipe Image Url
           </label>
 
           <div class="col-md-8">
-            <!-- id="recipeCodeId" -->
+            <!-- id="recipeImageUrlId" -->
             <input class="form-control"
 
                    type="text"
                    required
-                   [(ngModel)]=description
-                   name="recipeCode"
-                   #recipeCodeVar="ngModel"
-                   [ngClass]="{'is-invalid': (recipeCodeVar.touched ||
-                                              recipeCodeVar.dirty ) &&
-                                              !recipeCodeVar.valid }" />
+                   [(ngModel)]=image_url
+                   name="recipeImageUrl"
+                   #recipeImageUrlVar="ngModel"
+                   [ngClass]="{'is-invalid': (recipeImageUrlVar.touched ||
+                                              recipeImageUrlVar.dirty ) &&
+                                              !recipeImageUrlVar.valid }" />
             <span class="invalid-feedback">
-              <span *ngIf="recipeCodeVar.errors?.['required']">
-                recipe code is required.
+              <span *ngIf="recipeImageUrlVar.errors?.['required']">
+                recipe ImageUrl is required.
               </span>
             </span>
           </div>
@@ -80,10 +80,12 @@
           <div class="col-md-8">
             <textarea class="form-control"
                       id="descriptionId"
+                      required
                       placeholder="Description"
                       rows="3"
                       [(ngModel)]="description"
-                      name="description">
+                      name="description"
+                      >
             </textarea>
           </div>
         </div>
@@ -97,11 +99,19 @@
                     >
               Save
             </button>
-
           </div>
         </div>
+        
       </fieldset>
     </form>
+    <div class="row">
+      <div class="offset-md-2 col-md-8 ">
+        <button class="btn btn-danger me-1"
+        
+        style="width:80px"
+        (click)="backselect()"> Cancel</button>
+      </div>
+    </div>
   </div>
 </div>
 

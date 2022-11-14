@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router, Event } from '@angular/router';
 import { Recipe, RECIPEV1, RECIPES } from '../recipe/models/recipe';
-
+import { DOCUMENT } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
@@ -10,88 +11,57 @@ import { Recipe, RECIPEV1, RECIPES } from '../recipe/models/recipe';
 })
 export class RecipeEditComponent implements OnInit {
 
-  private originalRecipe?: Recipe;
   pageTitle = 'edit';
   name?:string;
   description?:string;
   image_url?:string;
-
   recipe?: Recipe;
-  recipes = RECIPEV1;
+  recipes = RECIPES;
+  recipeForm!: FormGroup;
 
 
-  saveRecipe()
-  {
+  saveRecipe() {
+    let id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    let index = this.recipes.findIndex(p => p.id ==id);
 
-    for (let index = 0; index < RECIPES.length; index++) {
-      RECIPES[index] = RECIPEV1[index];
-
+    let tempt = {
+      id: parseInt(this.route.snapshot.paramMap.get('id')!, 10),
+      name : this.getrecipeName.value,
+      image_url: this.getrecipeImage_url.value,
+      description: this.getrecipeDescription.value,
     }
-    this._location.back();
+    console.log(tempt);
+    this.recipes[index] = tempt;
+    console.log(this.recipes);
+    
+    
+    this.router.navigate(['/recipe/',parseInt(this.route.snapshot.paramMap.get('id')!, 10)]);
+    }
 
+  back() {    this.router.navigate(['/message']);}
 
-  }
-
-  addBook( a:any)
-  {
-
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    let index = this.recipes.findIndex(p => p.id ==id);
-    this.recipes[index].description = a.description;
-    this.recipes[index].name = a.name;
-    this.recipes[index].image_url = a.image_url;
-
-
-  }
-
-  constructor( private route: ActivatedRoute,  private router: Router, private _location: Location )
-   {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    let index = this.recipes.findIndex(p => p.id ==id);
-
-    this.name = this.recipes[index].name;
-    this.description = this.recipes[index].description;
-    this.image_url =  this.recipes[index].image_url;
-    console.log('dasdfasdf',this.image_url);
-
-    // this.router.events.subscribe((event: Event) => {
-
-    //   if (event instanceof NavigationStart) {
-    //     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    //     this.recipes.find(p => p.id == id )
-    //     this.recipe = this.recipes.find(p => p.id ==id);
-
-    // }
-
-    // });
-
-  };
+  constructor( private route: ActivatedRoute,  private router: Router, private _location: Location, @Inject(DOCUMENT) private document: Document ) {};
 
   ngOnInit(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    let index = this.recipes.findIndex(p => p.id ==id);
 
-    this.name = this.recipes[index].name;
-    this.description = this.recipes[index].description;
-    this.image_url =  this.recipes[index].image_url;
-    console.log('dasdfasdf',this.image_url);
     this.route.params.subscribe(
       params => {
         const id = + params['id'];
-        this.getRecipe(id);
-        console.log(id);
-
+        this.recipe  =  this.recipes.find(p => p.id ==id);
       }
     );
+    
+    this.recipeForm =  new FormGroup({
+      recipeName: new FormControl(this.recipe?.name, [Validators.required]),
+      recipeImage_url: new FormControl(this.recipe?.image_url,[Validators.required]),
+      recipeDescription: new FormControl(this.recipe?.description,[Validators.required]),
 
+  })
   }
-  getRecipe(id: number): void{
-    this.name = this.recipe?.name;
-    this.description = this.recipe?.description;
-    this.image_url =  this.recipe?.image_url;
-    this.originalRecipe = this.recipe  =  this.recipes.find(p => p.id ==id);
+  get getrecipeName(){ return this.recipeForm.get('recipeName')!;}
+  get getrecipeImage_url(){ return this.recipeForm.get('recipeImage_url')!;}
+  get getrecipeDescription(){ return this.recipeForm.get('recipeDescription')!;}
 
-  }
   deleteRecipe()
   {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
@@ -99,7 +69,5 @@ export class RecipeEditComponent implements OnInit {
     this.recipes.splice(index, 1);
     this._location.back();
   }
-  getCreateRecipe()
-  {}
 
 }

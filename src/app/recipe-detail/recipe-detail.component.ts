@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router, Event } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router, Event, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs';
 import { Recipe, RECIPES } from '../recipe/models/recipe';
 
 @Component({
@@ -15,27 +16,19 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor( private route: ActivatedRoute,  private router: Router, private _location: Location )
    {
-    this.router.events.subscribe((event: Event) => {
-
-      if (event instanceof NavigationStart) {
+        router.events.pipe(
+          filter((e: Event): e is RouterEvent => e instanceof RouterEvent)
+      ).subscribe((e: RouterEvent) => {
+        
         const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-        this.recipes.find(p => p.id == id )
         this.recipe = this.recipes.find(p => p.id ==id);
-    }
-
-    });
-
+        
+      });
+      
   };
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.recipes.find(p => p.id == id )
-    this.recipe = this.recipes.find(p => p.id ==id);
-    console.log(this.recipe);
-
-
-  }
   deleteRecipe()
   {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
