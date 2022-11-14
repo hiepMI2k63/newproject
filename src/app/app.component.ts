@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl ,FormGroup, Validators } from '@angular/forms';
+import { Recipe } from './recipe/models/recipe';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { FormControl ,FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements OnInit{
 
-
+  recipes: Recipe[] = [];
   
   ngOnInit(): void {
     

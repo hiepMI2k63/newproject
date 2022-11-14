@@ -1,18 +1,54 @@
-<nav>
-  <a routerLink="/recipe" >Recipes</a>
-  <a routerLink="/about" >about</a>
+<nav  class="navbar navbar-default">
+  <div  class="container-fluid" style="    justify-content: left;">
+    <div  class="navbar-header"><a  href="#"
+        class="navbar-brand">Recipe Book</a></div>
+    <div >
+      <ul  class="nav navbar-nav">
+        <li  routerlinkactive="active" class="active"><a
+             href="/recipe">Recipes</a></li>
+        <li  routerlinkactive="active"><a 
+            href="/about">About</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<router-outlet>
+<div class="container tab-pane "><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-5">
+            <button type="button" routerLink="/add" class="btn btn-success">Create</button>
+            <a *ngFor="let recipe of recipes" class="list-group-item clearfix active" style="cursor: pointer;"
+              routerLink="/recipe/{{recipe.id}}">
+              <div class="pull-left">
+                <h4 class="list-group-item-heading">
+                  {{ recipe.name}}
+                </h4>
+                <p class="list-group-item-text"> {{ recipe.description}}</p>
+              </div>
+              <span class="pull-right">
+                <img src="{{ recipe.image_url }}" style="max-height: 50px;">
+              </span>
+            </a>
+          </div>
+          <div class="col-md-7">
+            <router-outlet>
 
-</router-outlet>
+            </router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- <app-template-driven-form></app-template-driven-form> -->
 <!-- <label > name: </label>
 <input type="text" [formControl]="name" id="name">
 <p> {{ name.value }}</p>
-<button type="button" (click)="updateName()">Update Name</button> -->
-
-
-<!-- <form [formGroup]="profileForm"
+<button type="button" (click)="updateName()">Update Name</button>
+<form [formGroup]="profileForm"
        (ngSubmit)="onSubmit()">
   <label for="first-name"> Fisrt Name: </label>
   <input required type="text" id="first-name" formControlName="fisrtName">
@@ -20,26 +56,7 @@
   <input required type="text" id="last-name" formControlName="lastName">
   <button type="submit" 
     [disabled]="!profileForm.valid"> Sumit </button>
-</form> -->
-///////////////////
-<!-- <form [formGroup]="profileFormv1" 
-      (ngSubmit)="onSubmit()">
+</form>
+<div formGroupName="address">
 
-  <label for="first-name"> Fisrt Name: </label>
-  <input  type="text" id="first-name" formControlName="firstName">
-  <label for="last-name"> Last Name </label>
-  <input  type="text" id="last-name" formControlName="lastName">
-  <div formGroupName="address">
-    <h2> Address </h2>
-    <label for="street"> Street: </label>
-    <input type="text"  id="street" formControlName="street">
-    <label for="city"> City: </label>
-    <input type="text" id="city" formControlName="city">
-    <label for="state"> State: </label>
-    <input type="text" id="state" formControlName="state">
-    <label for="zip"> Zip: </label>
-    <input  type="text" id="zip" formControlName="zip">
-  </div>
-  <button type="button" 
-  [disabled]="!profileFormv1.valid"> Submit</button>
-</form> -->
+</div> -->
