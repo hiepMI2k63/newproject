@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl ,FormGroup, Validators } from '@angular/forms';
-import { Recipe, RECIPES } from './recipe/models/recipe';
+import { Recipe, RECIPES } from './recipes/recipe/models/recipe';
 
 @Component({
   selector: 'app-root',
